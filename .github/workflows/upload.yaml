@@ -1,0 +1,166 @@
+name: Upload
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  Setup:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: matrix
+        name: Matrix
+        shell: bash
+        run: |
+          echo "::set-output name=value::$(python tools/list.py packages)"
+      - name: Init
+        run: |
+          echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates
+      - name: Cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/sid-base-amd64.tgz
+          key: sid-base-amd64
+      - name: Create base
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get -y install pbuilder debian-archive-keyring
+          sudo pbuilder create --architecture amd64 \
+                               --mirror "http://debian-mirror.sakura.ne.jp/debian/" \
+                               --distribution sid \
+                               --basetgz ~/sid-base-amd64.tgz \
+                               --allow-untrusted \
+                               --debootstrapopts --keyring=/usr/share/keyrings/debian-archive-keyring.gpg \
+                               --debootstrapopts --include=debian-archive-keyring,ca-certificates
+  Package:
+    needs: [ Setup ]
+    continue-on-error: true
+    strategy:
+      matrix:
+        pkg: ${{fromJson(needs.setup.outputs.matrix)}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        if: ${{ github.event.pull_request.head.sha }}
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/checkout@v3
+        if: ${{ github.event_name == 'push' }}
+      - name: Download files
+        run: |
+          sudo apt-get update
+          sudo apt-get install devscripts pbuilder -y
+          mkdir deb
+          python tools/import.py deb packages/${{ matrix.pkg }}
+      - name: Cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/sid-base-amd64.tgz
+          key: sid-base-amd64
+      - name: Package
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: |
+          mkdir ~/hooks/
+          reps=$(python3 tools/get_depends.py packages/${{ matrix.pkg }})
+          cat << EOF > ~/hooks/D50Update
+          #!/bin/sh
+          #
+          # Runs apt-get update after all other repos have been added.
+          #
+
+          echo "deb [trusted=yes] https://deepin-community.github.io/debian-sid-dde-deps-repo sid main" > /etc/apt/sources.list
+          echo "deb [trusted=yes] https://deepin-community.github.io/debian-sid-dde-repo sid main">> /etc/apt/sources.list
+          echo "deb http://debian-mirror.sakura.ne.jp/debian/ sid main contrib non-free" >> /etc/apt/sources.list
+
+          apt-get update || true
+          
+          apt-get install $reps -y || true
+          echo "================"
+          pkg-config --cflags gio-unix-2.0
+          echo "================"
+          EOF
+          chmod +x ~/hooks/D50Update
+          cd deb
+          sudo pbuilder --build \
+                        --basetgz ~/sid-base-amd64.tgz \
+                        --allow-untrusted \
+                        --use-network yes \
+                        --hookdir ~/hooks \
+                        --logfile `uname -m`-build.log \
+                        --aptcache "" \
+                        --buildresult . ./*.dsc
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Debian
+          path: deb/*.deb
+  Upload:
+    needs: [ Package ]
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.5.4
+        name: Import SSH key
+        with:
+          ssh-private-key: ${{ secrets.BUILD_SSH_PRIVATE_KEY }}
+      - run: git config --global user.email "justforlxz@gmail.com"
+      - run: git config --global user.name "justforlxz"
+      - name: Install dep
+        run: |
+          sudo apt-get install reprepro -y
+      - name: Lock Database
+        shell: bash
+        id: lock
+        run: |
+          for (( ; ; ))
+          do
+            git clone git@github.com:deepin-community/push-sleep.git
+            cd push-sleep
+            git checkout debian
+            if [[ -f "lock" ]];
+            then
+              sleep 10
+              rm -rf push-sleep
+              continue
+            else
+              touch lock
+              git add lock
+              git commit -m "lock debian"
+              for (( ; ; ))
+              do
+                git push && break
+                sleep 10
+              done
+            fi
+            break
+          done
+          echo ::set-output name=exit_code::0
+      - name: Download all packages
+        uses: actions/download-artifact@v3
+        with:
+          name: Debian
+          path: ./deb
+      - name: Upload packages
+        run: |
+          git clone git@github.com:deepin-community/debian-sid-dde-deps-repo.git -b pages
+          rm -rf dists db log pool
+          reprepro -b debian-sid-dde-deps-repo -C main includedeb sid deb/*.deb || true
+          reprepro -b debian-sid-dde-deps-repo export sid
+          cd debian-sid-dde-deps-repo
+          git add .
+          git commit --amend --no-edit
+          git push -f
+      - name: Unlock
+        if: ${{ always() }} || ${{ steps.lock.outputs.exit_code == 0 }}
+        run: |
+          cd push-sleep
+          git reset HEAD^
+          rm -rf lock
+          git push -f
+

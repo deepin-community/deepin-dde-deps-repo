@@ -1,0 +1,287 @@
+Package: erofs-utils
+Version: 1.5.2-1
+Architecture: amd64
+Maintainer: Gao Xiang <xiang@kernel.org>
+Installed-Size: 521
+Depends: libc6 (>= 2.14), liberofs1, libfuse2 (>= 2.6), libselinux1 (>= 1.32), libuuid1 (>= 2.16)
+Homepage: http://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git
+Priority: optional
+Section: admin
+Filename: pool/main/e/erofs-utils/erofs-utils_1.5.2-1_amd64.deb
+Size: 81172
+SHA256: bd9ee47b3016f3603847365b9cf31692428b31ba4e44484522132f8d5f1df194
+SHA1: 36776086178bd202560adbe69ef1e6a339116dff
+MD5sum: f1d97bc1ac43cbed6ebf8b90946ed076
+Description: Utilities for EROFS File System
+ EROFS (Enhanced Read-Only File System) is a lightweight
+ read-only file system with modern designs (eg. page-sized
+ blocks, inline xattrs/data, etc.) for scenarios which need
+ high-performance read-only requirements, e.g. Android OS
+ for smartphones and LIVECDs.
+ .
+ It also provides fixed-sized output compression support,
+ which improves storage density, keeps relatively higher
+ compression ratios, which is more useful to achieve high
+ performance for embedded devices with limited memory.
+
+Package: erofs-utils-dbgsym
+Source: erofs-utils
+Version: 1.5.2-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Gao Xiang <xiang@kernel.org>
+Installed-Size: 130
+Depends: erofs-utils (= 1.5.2-1)
+Priority: optional
+Section: debug
+Filename: pool/main/e/erofs-utils/erofs-utils-dbgsym_1.5.2-1_amd64.deb
+Size: 66976
+SHA256: a70f85483b4f884a6a7dc050acd13606f19ad2d615b23d83820b939d74231138
+SHA1: 5c37aa0ed4c9f0d209d2a6fc718830973bc7ef2e
+MD5sum: dfa0fcd8760684072cb8d035d4fe3080
+Description: debug symbols for erofs-utils
+Build-Ids: 2c6686fc2104a1d157af2a6506041da100922876 959eaf9d0391c5b4cd54c74af2c66ea867e88004 a6018bd2d8c8831bc1d1e9548d728f9e0fd17b0c c750f2b1d5931181e919516c6d7a4f786e2d63f4
+
+Package: golang-github-josharian-native-dev
+Source: golang-github-josharian-native
+Version: 1.0.0-1
+Architecture: all
+Maintainer: electricface <songwentai@uniontech.com>
+Installed-Size: 20
+Homepage: https://github.com/josharian/native
+Priority: optional
+Section: devel
+Filename: pool/main/g/golang-github-josharian-native/golang-github-josharian-native-dev_1.0.0-1_all.deb
+Size: 3180
+SHA256: f33e57327737a1377c689a35df1892fb4a9bac17f2dce2917e727ef575ffa68b
+SHA1: f90740f74bf0a8e937ae5fdd157a4615bf767a0d
+MD5sum: a31023d0041f4a2d0673dbdb396c8420
+Description: native byte order for Go
+ This package provides easy access to native byte order.
+
+Package: golang-github-mdlayher-netlink-dev
+Source: golang-github-mdlayher-netlink
+Version: 1.6.0-1
+Architecture: all
+Maintainer: electricface <songwentai@uniontech.com>
+Installed-Size: 217
+Depends: golang-github-mdlayher-socket-dev, golang-github-josharian-native-dev, golang-golang-x-net-dev, golang-golang-x-sys-dev
+Homepage: https://github.com/mdlayher/netlink
+Priority: optional
+Section: libdevel
+Filename: pool/main/g/golang-github-mdlayher-netlink/golang-github-mdlayher-netlink-dev_1.6.0-1_all.deb
+Size: 41124
+SHA256: a1bec431486a24604b0e6eec2ad65d1a3aa9b95bf4dbaf730de60e5608983421
+SHA1: c0224d74924b7e06e37a00355c32b2295ae0cb39
+MD5sum: c85df11d9aba87feede39cc4f7a4fd7e
+Description: netlink library for Go
+ This package provides low-level access to Linux netlink sockets (AF_NETLINK).
+
+Package: golang-github-mdlayher-socket-dev
+Source: golang-github-mdlayher-socket
+Version: 0.2.1-1
+Architecture: amd64
+Maintainer: electricface <songwentai@uniontech.com>
+Installed-Size: 72
+Depends: golang-golang-x-net-dev, golang-golang-x-sync-dev, golang-golang-x-sys-dev
+Homepage: https://github.com/mdlayher/socket
+Priority: optional
+Section: libdevel
+Filename: pool/main/g/golang-github-mdlayher-socket/golang-github-mdlayher-socket-dev_0.2.1-1_amd64.deb
+Size: 16536
+SHA256: 03e8035b4ea97c974609611027e26fe3dfdf7bcae58d7766fa3550f4e5e41af2
+SHA1: 16f0c8f5d732bb808e7adb3f437bb0266f6bab3b
+MD5sum: a3042e9dab1732a38346382cbe1bcce7
+Description: low-level network socket for Go
+ This package provides a low-level network connection type which integrates with
+ Go's runtime network poller to provide asynchronous I/O and deadline support.
+ This package focuses on UNIX-like operating systems which make use of BSD
+ sockets system call APIs. It is meant to be used as a foundation for the
+ creation of operating system-specific socket packages, for socket families
+ such as Linux's AF_NETLINK, AF_PACKET, or AF_VSOCK. This package should not be
+ used directly in end user applications.
+
+Package: golang-github-youpy-go-riff-dev
+Source: golang-github-youpy-go-riff
+Version: 1.0+git20131220-1
+Architecture: all
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 24
+Homepage: https://github.com/youpy/go-riff
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-github-youpy-go-riff/golang-github-youpy-go-riff-dev_1.0+git20131220-1_all.deb
+Size: 3876
+SHA256: ea0c0998956434f9304f747a7c98acbb0aaff7778f37881111b8895b8f42f583
+SHA1: 06df1a1a5f2cd05a20d722afbce18d1ec2d049c9
+MD5sum: 8411b88fcd3119b4eb9f28c54556b9b7
+Description: encode and decode ITU-T G.711 sound data
+ Package g711 implements encoding and decoding of G711 PCM sound data.
+ G.711 is an ITU-T standard for audio companding.
+
+Package: golang-github-youpy-go-wav-dev
+Source: golang-github-youpy-go-wav
+Version: 0.3.0+ds-1
+Architecture: all
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 37
+Depends: golang-github-zaf-g711-dev, golang-github-youpy-go-riff-dev
+Homepage: https://github.com/youpy/go-wav
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-github-youpy-go-wav/golang-github-youpy-go-wav-dev_0.3.0+ds-1_all.deb
+Size: 6440
+SHA256: 64fd04f10bdd09468649c92ec80da095b8b01915d2d885d313e597ca97f7fff0
+SHA1: 5c7a5e2c948008d22a54d26196de9cfac505cc3e
+MD5sum: 58e3e9cea6e1848d75673be72cd7b560
+Description: Go library to read/write WAVE(RIFF waveform Audio) Format
+ A Go library to read/write WAVE(RIFF waveform Audio) Format.
+ supported Format:
+ PCM
+ IEEE float (read-only)
+ G.711 A-law (read-only)
+ G.711 µ-law (read-only)
+
+Package: golang-github-zaf-g711-dev
+Source: golang-github-zaf-g711
+Version: 1.2-1
+Architecture: all
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 44
+Homepage: https://github.com/zaf/g711
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-github-zaf-g711/golang-github-zaf-g711-dev_1.2-1_all.deb
+Size: 7720
+SHA256: 099b420df65123fc4406744b144d88f64937ffad73481340c1100cfa7959ba15
+SHA1: f2783816d58e45433c4a77954d7d56ac73662209
+MD5sum: 89d4c8f95aca0b6d7c7badbe8d160063
+Description: encode and decode ITU-T G.711 sound data
+ Package g711 implements encoding and decoding of G711 PCM sound data.
+ G.711 is an ITU-T standard for audio companding.
+
+Package: golang-google-protobuf-dev
+Source: golang-google-protobuf
+Version: 1.25.0+git20201208.160c747-1
+Architecture: all
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 5820
+Homepage: https://github.com/protocolbuffers/protobuf-go
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-google-protobuf/golang-google-protobuf-dev_1.25.0+git20201208.160c747-1_all.deb
+Size: 516648
+SHA256: 6988b71c391f76570ece2a1bfc182a027e005e33566c4968e840651702c30f61
+SHA1: f7cbe889e68f14ebb1cf7312d86f077d90199b42
+MD5sum: 909bc25a770ed6f1e6c513804eba7962
+Description: Go support for Protocol Buffers (second major revision)
+ This project hosts the Go implementation for protocol buffers, which
+ is a language-neutral, platform-neutral, extensible mechanism for
+ serializing structured data.
+ The protocol buffer language is a language for specifying the
+ schema for structured data.
+ .
+ This schema is compiled into language specific bindings.
+ .
+ This project provides both a tool to generate Go code for the
+ protocol buffer language, and also the runtime implementation to
+ handle serialization of messages in Go.
+
+Package: liberofs-dev
+Source: erofs-utils
+Version: 1.5.2-1
+Architecture: amd64
+Maintainer: Gao Xiang <xiang@kernel.org>
+Installed-Size: 245
+Homepage: http://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git
+Priority: optional
+Section: admin
+Filename: pool/main/e/erofs-utils/liberofs-dev_1.5.2-1_amd64.deb
+Size: 62584
+SHA256: ed77b623f16950eef5ebaa4fd2ce8dbb18a42b87d25fd7519c3cfd409efe5c96
+SHA1: 224b1734e840079158e4c773bb2ab92aaee7f6a9
+MD5sum: e048c042fec567b9dfaeb3a499da65b9
+Description: Utilities for EROFS File System
+ EROFS (Enhanced Read-Only File System) is a lightweight
+ read-only file system with modern designs (eg. page-sized
+ blocks, inline xattrs/data, etc.) for scenarios which need
+ high-performance read-only requirements, e.g. Android OS
+ for smartphones and LIVECDs.
+ .
+ It also provides fixed-sized output compression support,
+ which improves storage density, keeps relatively higher
+ compression ratios, which is more useful to achieve high
+ performance for embedded devices with limited memory.
+
+Package: liberofs1
+Source: erofs-utils
+Version: 1.5.2-1
+Architecture: amd64
+Maintainer: Gao Xiang <xiang@kernel.org>
+Installed-Size: 104
+Depends: libc6 (>= 2.27)
+Homepage: http://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git
+Priority: optional
+Section: admin
+Filename: pool/main/e/erofs-utils/liberofs1_1.5.2-1_amd64.deb
+Size: 39268
+SHA256: 3504132a2bab91bdc26efbd1ebbe62ad8bd16dcc13e8c84f3900c42b895f752d
+SHA1: 32825be4c807667ca70ea3a7a1b57575ca58b547
+MD5sum: d68c824b6681d0026b8abc0f5437e7c1
+Description: Utilities for EROFS File System
+ EROFS (Enhanced Read-Only File System) is a lightweight
+ read-only file system with modern designs (eg. page-sized
+ blocks, inline xattrs/data, etc.) for scenarios which need
+ high-performance read-only requirements, e.g. Android OS
+ for smartphones and LIVECDs.
+ .
+ It also provides fixed-sized output compression support,
+ which improves storage density, keeps relatively higher
+ compression ratios, which is more useful to achieve high
+ performance for embedded devices with limited memory.
+
+Package: liberofs1-dbgsym
+Source: erofs-utils
+Version: 1.5.2-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Gao Xiang <xiang@kernel.org>
+Installed-Size: 158
+Depends: liberofs1 (= 1.5.2-1)
+Priority: optional
+Section: debug
+Filename: pool/main/e/erofs-utils/liberofs1-dbgsym_1.5.2-1_amd64.deb
+Size: 139132
+SHA256: 3648053ff972c5353fb60124f57217753533cdb74120b35fc2c87bfdb4c2edf0
+SHA1: 0977cdd52317228b30975cbd86716d56f76b38dc
+MD5sum: 49e565c4690942bcedddc645b34a0bbd
+Description: debug symbols for liberofs1
+Build-Ids: 0069b95c09ea17d64bb4fb2b2693641d4b17fb49
+
+Package: protoc-gen-go
+Source: golang-google-protobuf
+Version: 1.25.0+git20201208.160c747-1
+Architecture: amd64
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 8363
+Depends: libprotobuf-dev, protobuf-compiler
+Conflicts: golang-goprotobuf-dev
+Built-Using: golang-1.15 (= 1.15.9.1-1+dde)
+Homepage: https://github.com/protocolbuffers/protobuf-go
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-google-protobuf/protoc-gen-go_1.25.0+git20201208.160c747-1_amd64.deb
+Size: 3622436
+SHA256: be4e7889ce487c81544980df98d178bbb8b6c925e792754e58dd92d5fab0d55f
+SHA1: cba4a765c45f52e9a7929e8f5897b157ffe2e8e7
+MD5sum: 99e60b97848bec4d914568b13a7f5676
+Description: Go support for Protocol Buffers (protoc compiler plugin)
+ It augments the protoc compiler so that it knows how to generate Go
+ specific code for a given .proto file.
+ .
+ This plugin is provided google.golang.org/protobuf module, aka the
+ second major revision of the Go protocol buffer API.  Compared to
+ the old protoc-gen-go plugin (in golang-goprotobuf-dev package)
+ provided by github.com/golang/protobuf module, it doesn't support
+ generating gRPC service definitions.
+
