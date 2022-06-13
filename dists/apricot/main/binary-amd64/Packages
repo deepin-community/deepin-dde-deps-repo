@@ -1,0 +1,59 @@
+Package: golang-github-youpy-go-riff-dev
+Source: golang-github-youpy-go-riff
+Version: 1.0+git20131220-1
+Architecture: all
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 24
+Homepage: https://github.com/youpy/go-riff
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-github-youpy-go-riff/golang-github-youpy-go-riff-dev_1.0+git20131220-1_all.deb
+Size: 3876
+SHA256: ea0c0998956434f9304f747a7c98acbb0aaff7778f37881111b8895b8f42f583
+SHA1: 06df1a1a5f2cd05a20d722afbce18d1ec2d049c9
+MD5sum: 8411b88fcd3119b4eb9f28c54556b9b7
+Description: encode and decode ITU-T G.711 sound data
+ Package g711 implements encoding and decoding of G711 PCM sound data.
+ G.711 is an ITU-T standard for audio companding.
+
+Package: golang-github-youpy-go-wav-dev
+Source: golang-github-youpy-go-wav
+Version: 0.3.0+ds-1
+Architecture: all
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 37
+Depends: golang-github-zaf-g711-dev, golang-github-youpy-go-riff-dev
+Homepage: https://github.com/youpy/go-wav
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-github-youpy-go-wav/golang-github-youpy-go-wav-dev_0.3.0+ds-1_all.deb
+Size: 6440
+SHA256: 64fd04f10bdd09468649c92ec80da095b8b01915d2d885d313e597ca97f7fff0
+SHA1: 5c7a5e2c948008d22a54d26196de9cfac505cc3e
+MD5sum: 58e3e9cea6e1848d75673be72cd7b560
+Description: Go library to read/write WAVE(RIFF waveform Audio) Format
+ A Go library to read/write WAVE(RIFF waveform Audio) Format.
+ supported Format:
+ PCM
+ IEEE float (read-only)
+ G.711 A-law (read-only)
+ G.711 µ-law (read-only)
+
+Package: golang-github-zaf-g711-dev
+Source: golang-github-zaf-g711
+Version: 1.2-1
+Architecture: all
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Installed-Size: 44
+Homepage: https://github.com/zaf/g711
+Priority: optional
+Section: golang
+Filename: pool/main/g/golang-github-zaf-g711/golang-github-zaf-g711-dev_1.2-1_all.deb
+Size: 7720
+SHA256: 099b420df65123fc4406744b144d88f64937ffad73481340c1100cfa7959ba15
+SHA1: f2783816d58e45433c4a77954d7d56ac73662209
+MD5sum: 89d4c8f95aca0b6d7c7badbe8d160063
+Description: encode and decode ITU-T G.711 sound data
+ Package g711 implements encoding and decoding of G711 PCM sound data.
+ G.711 is an ITU-T standard for audio companding.
+
