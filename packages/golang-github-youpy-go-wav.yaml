@@ -1,0 +1,5 @@
+metadata:
+  base_url: https://deepin-community.github.io/web/
+  name: golang-github-youpy-go-wav
+  version: 0.3.0+ds
+  rebuild: 1
