@@ -1,0 +1,5 @@
+metadata:
+  base_url: https://deepin-community.github.io/web/
+  name: golang-github-mdlayher-netlink
+  version: 1.6.0
+  rebuild: 1
