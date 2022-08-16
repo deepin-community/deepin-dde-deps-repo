@@ -1,0 +1,5 @@
+metadata:
+  base_url: https://deepin-community.github.io/web/
+  name: golang-github-josharian-native
+  version: 1.0.0
+  rebuild: 1
