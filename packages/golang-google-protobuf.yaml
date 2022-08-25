@@ -1,0 +1,5 @@
+metadata:
+  base_url: https://deepin-community.github.io/web/
+  name: golang-google-protobuf
+  version: 1.25.0%2Bgit20201208.160c747
+  rebuild: 1
